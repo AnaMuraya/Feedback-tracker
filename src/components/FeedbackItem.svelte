@@ -1,13 +1,17 @@
 <script>
-    import {createEventDispatcher} from 'svelte'
+    import {FeedbackStore} from '../stores'
+    // import {createEventDispatcher} from 'svelte'
     import Card from './Card.svelte'
     export let feedbackItem;
 
     // dispatcher and delete function to handle deletion
-    const dispatch = createEventDispatcher()
+    // const dispatch = createEventDispatcher()
 
     const handleDelete = (ItemID) => {
-        dispatch('deleteItem', ItemID)
+        // dispatch('deleteItem', ItemID)
+        FeedbackStore.update((currentFeedback) => {
+            return currentFeedback.filter(feedbackItem => feedbackItem.id != ItemID)
+        })
 
     } 
 </script>

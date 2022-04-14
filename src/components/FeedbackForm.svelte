@@ -1,15 +1,16 @@
 <script>
     import {v4 as uuidv4} from 'uuid'
+    import {FeedbackStore} from '../stores'
     import Card from './Card.svelte'
     import Button from './Button.svelte'
     import RatingSelect from './RatingSelect.svelte'
-    import {createEventDispatcher} from 'svelte'
+    // import {createEventDispatcher} from 'svelte'
 
     let message = ''
     let rating = 10
     let btnDisabled = true
     let text
-    let dispatch = createEventDispatcher()
+    // let dispatch = createEventDispatcher()
 
     const handleSelect = (e) => {rating = e.detail}
 
@@ -31,7 +32,10 @@
                 message,
                 rating: +rating
             }
-            dispatch('addFeedback',newFeedback)
+            // dispatch('addFeedback',newFeedback)
+            FeedbackStore.update((currentFeedback) => {
+                return [newFeedback, ...currentFeedback]
+            })
 
             message = ''
         }
@@ -62,5 +66,25 @@
     }
     header h2{
         font-size: 22px;
+    }
+    .input-group{
+        border: 1px rgb(139, 139, 139) solid;
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 20px;
+        border-radius: 8px;
+    }
+    .input-group input{
+        border: none;
+        background: none;
+        width: 75%;
+        color: #29191e;
+        font-size: 20px;
+        font-weight: bold;
+    }
+    .input-group input:focus{
+        border: none;
+        background: none;
+        outline: none;
     }
 </style>

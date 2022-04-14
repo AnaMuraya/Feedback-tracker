@@ -12,7 +12,6 @@
         color: #fff;
         border: 0;
         border-radius: 8px;
-        color: #fff;
         width: 100px;
         height: 40px;
         cursor: pointer;
