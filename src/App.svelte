@@ -1,70 +1,35 @@
 <script>
-	let firstName = 'Ana';
-	let lastName = 'Muraya';
-	let color = 'blue';
-	let show = false;
-	let members = [
+	import FeedbackList from "./components/FeedbackList.svelte"
+	// FeedbackList data
+	let feedbackList = [
 		{
 			id: '1',
-			name: 'Ana'
+			rating: '10',
+			message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum aliquam iure voluptatibus distinctio aperiam minus, itaque, reprehenderit quidem autem corrupti ab deserunt nulla, adipisci pariatur quod laudantium quasi possimus est!'
 		},
 		{
 			id: '2',
-			name: 'Bob'
+			rating: '8',
+			message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum aliquam iure voluptatibus distinctio aperiam minus, itaque, reprehenderit quidem autem corrupti ab deserunt nulla, adipisci pariatur quod laudantium quasi possimus est!'
 		},
 		{
 			id: '3',
-			name: 'Muraya'
+			rating: '9',
+			message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum aliquam iure voluptatibus distinctio aperiam minus, itaque, reprehenderit quidem autem corrupti ab deserunt nulla, adipisci pariatur quod laudantium quasi possimus est!'
 		},
 		{
 			id: '4',
-			name: 'Andy'
+			rating: '7',
+			message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum aliquam iure voluptatibus distinctio aperiam minus, itaque, reprehenderit quidem autem corrupti ab deserunt nulla, adipisci pariatur quod laudantium quasi possimus est!'
 		}
 	]
-	const toggle = () => {
-	color = color==='blue'?'yellow':'blue'; 
-	show = !show
-	members = [...members, {id: '5', name: 'Mike'}]
+		// delete feedback dispatcher function
+	const deleteItem = (e) => {
+		const ItemID = e.detail
+		feedbackList = feedbackList.filter((item) => item.id != ItemID)
 	}
-
-	$:name = firstName + ' ' + lastName;
 
 </script>
-
-<main>
-	<h1 style="color: {color};">Hello {name}!</h1>
-	{#if show}
-		<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
-	{:else}
-		<p>Good day</p>
-	{/if}
-	
-	{#each members as member (member.id) }
-		<p>{member.id}: {member.name}</p>
-		
-	{/each}
-	
-	<button on:click="{toggle}">Click</button>
+<main class="container">
+	<FeedbackList {feedbackList} on:deleteItem={deleteItem}/>
 </main>
-
-<style>
-	main {
-		text-align: center;
-		padding: 1em;
-		max-width: 240px;
-		margin: 0 auto;
-	}
-
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
-	}
-
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
-	}
-</style>
