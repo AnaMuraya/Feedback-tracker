@@ -28,7 +28,11 @@
 
 	$: count = feedbackList.length
 	$: average = feedbackList.reduce((a, {rating}) => a + rating , 0) / count
-		
+	
+	const handleFeedback = (e) => {
+		const newFeedbackList = e.detail
+		feedbackList = [newFeedbackList, ...feedbackList]
+	}
 	// delete feedback dispatcher function
 	const deleteItem = (e) => {
 		const ItemID = e.detail
@@ -37,7 +41,7 @@
 
 </script>
 <main class="container">
-	<FeedbackForm/>
+	<FeedbackForm on:addFeedback={handleFeedback}/>
 	<FeedbackStats {count} {average}/>
 	<FeedbackList {feedbackList} on:deleteItem={deleteItem}/>
 </main>
