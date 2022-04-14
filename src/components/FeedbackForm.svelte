@@ -4,13 +4,11 @@
     import Card from './Card.svelte'
     import Button from './Button.svelte'
     import RatingSelect from './RatingSelect.svelte'
-    // import {createEventDispatcher} from 'svelte'
 
     let message = ''
     let rating = 10
     let btnDisabled = true
     let text
-    // let dispatch = createEventDispatcher()
 
     const handleSelect = (e) => {rating = e.detail}
 
@@ -32,7 +30,6 @@
                 message,
                 rating: +rating
             }
-            // dispatch('addFeedback',newFeedback)
             FeedbackStore.update((currentFeedback) => {
                 return [newFeedback, ...currentFeedback]
             })
