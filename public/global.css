@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200&display=swap');
 
 *{
 	box-sizing: border-box;
@@ -10,7 +10,7 @@ body{
 	font-family: 'Poppins', san-serif;
 	background-color: #202142;
 	line-height: 1.6;
-	/* color: #fff; */
+	color: #fff;
 }
 
 ul{
